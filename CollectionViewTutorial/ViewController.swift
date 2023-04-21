@@ -19,6 +19,14 @@ class ViewController: UIViewController {
 
     let reuseIdentifier = "CollectionViewCell"
     
+    let toCarouselButton = {
+        let button = UIButton()
+        button.setTitle("To Carousel", for: .normal)
+        button.backgroundColor = .systemBlue
+        button.layer.cornerRadius = 8
+        return button
+    }()
+    
     let searchBar = UISearchBar()
     
     let collectionView = {
@@ -64,7 +72,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBlue
+        view.backgroundColor = .white
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.register(
             SectionHeaderReusableView.self,
@@ -76,6 +84,8 @@ class ViewController: UIViewController {
         searchBar.delegate = self
         applySnapshot(search: "", animatingDifferences: false)
         layout()
+        
+        toCarouselButton.addTarget(self, action: #selector (toCarousel), for: .touchUpInside)
     }
 
     // MARK: - Diffable Data Source
@@ -138,21 +148,31 @@ class ViewController: UIViewController {
     
     private func layout() {
         collectionView.backgroundColor = .white
-        [collectionView, searchBar].forEach { view.addSubview($0) }
+        [collectionView, searchBar, toCarouselButton].forEach { view.addSubview($0) }
         
+        toCarouselButton.snp.makeConstraints {
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(20)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-20)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+        }
         
         collectionView.snp.makeConstraints {
             $0.top.equalTo(searchBar.snp.bottom)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            $0.bottom.equalTo(toCarouselButton.snp.top).offset(-20)
         }
+        
         
         searchBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
         }
+    }
+    
+    @objc private func toCarousel(){
+        present(CarouselViewController(), animated: true)
     }
 }
 
