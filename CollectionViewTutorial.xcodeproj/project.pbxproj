@@ -17,6 +17,8 @@
 		B0F2458C29EFC628005F8424 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F2458B29EFC628005F8424 /* CollectionViewCell.swift */; };
 		B0F2458E29F11250005F8424 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F2458D29F11250005F8424 /* Section.swift */; };
 		B0F2459029F12476005F8424 /* SectionHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F2458F29F12476005F8424 /* SectionHeaderReusableView.swift */; };
+		B0F2459229F17620005F8424 /* CarouselCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F2459129F17620005F8424 /* CarouselCollectionViewCell.swift */; };
+		B0F2459429F17ABF005F8424 /* CarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F2459329F17ABF005F8424 /* CarouselViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		B0F2458B29EFC628005F8424 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		B0F2458D29F11250005F8424 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		B0F2458F29F12476005F8424 /* SectionHeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderReusableView.swift; sourceTree = "<group>"; };
+		B0F2459129F17620005F8424 /* CarouselCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCollectionViewCell.swift; sourceTree = "<group>"; };
+		B0F2459329F17ABF005F8424 /* CarouselViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,8 @@
 				B0F2458B29EFC628005F8424 /* CollectionViewCell.swift */,
 				B0F2458D29F11250005F8424 /* Section.swift */,
 				B0F2458F29F12476005F8424 /* SectionHeaderReusableView.swift */,
+				B0F2459129F17620005F8424 /* CarouselCollectionViewCell.swift */,
+				B0F2459329F17ABF005F8424 /* CarouselViewController.swift */,
 				B0F2457A29EFC0AD005F8424 /* Main.storyboard */,
 				B0F2457D29EFC0B0005F8424 /* Assets.xcassets */,
 				B0F2457F29EFC0B0005F8424 /* LaunchScreen.storyboard */,
@@ -155,9 +161,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0F2459229F17620005F8424 /* CarouselCollectionViewCell.swift in Sources */,
 				B0F2457929EFC0AD005F8424 /* ViewController.swift in Sources */,
 				B0F2457529EFC0AD005F8424 /* AppDelegate.swift in Sources */,
 				B0F2458C29EFC628005F8424 /* CollectionViewCell.swift in Sources */,
+				B0F2459429F17ABF005F8424 /* CarouselViewController.swift in Sources */,
 				B0F2458E29F11250005F8424 /* Section.swift in Sources */,
 				B0F2459029F12476005F8424 /* SectionHeaderReusableView.swift in Sources */,
 				B0F2457729EFC0AD005F8424 /* SceneDelegate.swift in Sources */,

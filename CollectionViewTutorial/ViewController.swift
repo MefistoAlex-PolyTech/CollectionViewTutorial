@@ -9,11 +9,10 @@ import UIKit
 import SnapKit
 
 
-
-typealias DataSource = UICollectionViewDiffableDataSource<Section, String>
-typealias Snapshot = NSDiffableDataSourceSnapshot<Section, String>
-
 class ViewController: UIViewController {
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, String>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, String>
+
     // MARK: - Properties
     
     private var sections = Section.allSections

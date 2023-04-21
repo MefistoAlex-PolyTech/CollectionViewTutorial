@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.screen.bounds)
         window?.windowScene = windowScene
-        let navigationRootController = UINavigationController(rootViewController: ViewController())
+        let navigationRootController = UINavigationController(rootViewController: CarouselViewController())
         window?.rootViewController = navigationRootController
         window?.makeKeyAndVisible()
     }
