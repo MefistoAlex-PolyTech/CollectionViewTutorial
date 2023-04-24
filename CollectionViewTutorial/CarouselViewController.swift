@@ -34,12 +34,20 @@ class CarouselViewController: UIViewController {
         
         layout.itemSize = CGSize(width: self.view.bounds.width * 0.6, height: self.view.bounds.height * 0.6)
         layout.minimumLineSpacing = 30
-        layout.sectionInset = UIEdgeInsets(top: 20, left: self.view.bounds.width * 0.2, bottom: 10, right: self.view.bounds.width * 0.2)
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right:20)
         layout.scrollDirection = .horizontal
         
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
         return collection
+    }()
+    
+    let toAligmentLayoutButton = {
+        let button = UIButton()
+        button.setTitle("To Aligment", for: .normal)
+        button.backgroundColor = .systemBlue
+        button.layer.cornerRadius = 8
+        return button
     }()
     
     // MARK: - LifeCycle
@@ -49,6 +57,8 @@ class CarouselViewController: UIViewController {
         super.viewDidLoad()
         layout()
         
+        toAligmentLayoutButton.addTarget(self, action: #selector(toAligment), for: .touchUpInside)
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.showsHorizontalScrollIndicator = false
@@ -57,20 +67,33 @@ class CarouselViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        collectionView.scrollToItem(at: IndexPath(item: self.numberOfItems/2, section: 0), at: .centeredHorizontally, animated: true)
+//        collectionView.scrollToItem(at: IndexPath(item: self.numberOfItems/2, section: 0), at: .centeredHorizontally, animated: true)
     }
     
     // MARK: - Layout
     
     private func layout() {
-        view.addSubview(collectionView)
-        
+        [collectionView, toAligmentLayoutButton].forEach {
+            view.addSubview($0)
+        }
+       
         collectionView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
+            $0.bottom.equalTo(toAligmentLayoutButton.snp.top)
+        }
+        
+        toAligmentLayoutButton.snp.makeConstraints {
+            $0.top.equalTo(collectionView.snp.bottom).offset(20)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(20)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-20)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
+    }
+    
+    @objc private func toAligment() {
+        present(CellAligmentViewController(), animated: true)
     }
 }
 
@@ -129,3 +152,27 @@ extension CarouselViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 }
+
+
+ class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
+    
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        let attributes = super.layoutAttributesForElements(in: rect)
+
+        var leftMargin = sectionInset.left
+        var maxY: CGFloat = -1.0
+        attributes?.forEach { layoutAttribute in
+            if layoutAttribute.frame.origin.y >= maxY {
+                leftMargin = sectionInset.left
+            }
+
+            layoutAttribute.frame.origin.x = leftMargin
+
+            leftMargin += layoutAttribute.frame.width + minimumInteritemSpacing
+            maxY = max(layoutAttribute.frame.maxY , maxY)
+        }
+
+        return attributes
+    }
+}
+
